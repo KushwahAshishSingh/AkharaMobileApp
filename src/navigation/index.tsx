@@ -4,6 +4,9 @@ import React from 'react';
 import BottomTabs from './Tabs';
 import { MainNavigatorStack } from './types';
 import { navigationRef } from './RootNavigation';
+import Feeds from '../screens/home/Feeds';
+import { HomeScreen } from '../screens/home/HomeScreen';
+import MyFeeds from '../screens/home/MyFeeds';
 // import {QrScanner} from '../components/QrScanner';
 const MyTheme = {
   ...DefaultTheme,
@@ -28,6 +31,8 @@ const RootNavigator: React.FC<MainNavigatorStack> = () => {
               headerShown: false,
             }}
           />
+          
+
           {/* <Stack.Screen
             name="QrScanner"
             component={QrScanner}

@@ -4,8 +4,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {CompositeNavigationProp} from '@react-navigation/native';
-import Media from '../screens/Media';
-import Members from '../screens/Members';
+
 
 export type HomeStackNavigatorParamList = {
   Home: undefined;
@@ -23,6 +22,8 @@ export type BottomTabNavigatorPropsI = CompositeNavigationProp<
 
 export type MainNavigatorStack = {
   BottomTabStack: BottomTabNavigatorPropsI;
+  Feeds: undefined;
+  MyFeeds: undefined;
   // QrScanner: undefined;
 };
 

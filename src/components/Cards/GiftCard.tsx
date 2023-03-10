@@ -2,7 +2,7 @@
 // eslint-disable-next-line prettier/prettier
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import {moderateScale} from '../../../utils/helpers';
+import {moderateScale} from '../../utils/helpers';
 
 interface PropsI {
     Customtitle: string | Element;

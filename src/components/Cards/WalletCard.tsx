@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { moderateScale } from '../../../utils/helpers';
+import { moderateScale } from '../../utils/helpers';
 
-import Eye from '../../../../assets/icons/Eye';
-import Up_tick from '../../../../assets/icons/Up_tick';
+import Eye from '../../../assets/icons/Eye';
+import Up_tick from '../../../assets/icons/Up_tick';
 interface PropsI {
     price: string | Element;
     hours: number;

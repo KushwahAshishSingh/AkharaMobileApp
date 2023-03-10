@@ -2,7 +2,6 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomTabNavigationParam} from './types';
-import HomeStackNavigator from './HomeStack';
 import Media from '../screens/Media';
 import Members from '../screens/Members';
 import Setting from '../screens/Setting';
@@ -11,21 +10,57 @@ import Piechart from '../../assets/icons/Piechart';
 import Vector1 from '../../assets/icons/Vector1';
 import Vector2 from '../../assets/icons/Vector2';
 import Vector3 from '../../assets/icons/Vector3';
+import Fi_bell from '../../assets/icons/Fi_bell';
 import { windowWidth } from '../utils/Dimension';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import Feeds from '../screens/home/Feeds';
+import MyFeeds from '../screens/home/MyFeeds';
+const TopTab = createMaterialTopTabNavigator();
 const Tab = createBottomTabNavigator<BottomTabNavigationParam>();
 
-const BottomTabs = () => {
+const TopTabNavigator = () => {
   return (
+    <TopTab.Navigator>
+      <TopTab.Screen name="Feeds" component={Feeds} />
+      <TopTab.Screen name="My Feeds" component={MyFeeds} />
+    </TopTab.Navigator>
+  );
+};
+
+const BottomTabs = () => {
+  let primary_color = '#FFFFFF';
+  return (
+    
     <Tab.Navigator
       tabBar={props => <MyTabBar {...props} />}>
-      <Tab.Screen
-        name="Home"
-        component={HomeStackNavigator}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarBadge: '',
-        }}
+      <TopTab.Screen name="Home" component={TopTabNavigator}
+      options={{
+        title: 'Home',
+        headerStyle: {
+          backgroundColor: primary_color,
+        },
+        headerShadowVisible: false,
+        headerTintColor: primary_color,
+        headerLeft: () => (
+          <View style={styles.left_container}>
+              <View style={[styles.custom_height,{padding:8}]}>
+                <Text style={styles.sub_heading}>Akhara</Text>
+              </View>
+          </View>
+        ),
+        headerRight: () => (
+          <View style={styles.right_container}>
+            <View style={{alignItems:'flex-end'}}>
+            <TouchableOpacity
+             >
+              <View style={styles.right_custom_padding}>
+                <Fi_bell />
+              </View>
+            </TouchableOpacity>
+            </View>
+          </View>
+        ),
+      }}
       />
       <Tab.Screen
         name="Media"
@@ -138,9 +173,9 @@ function MyTabBar({state, descriptors, navigation}) {
 }
 
 const styles = StyleSheet.create({
- container: {width: '80%', height:3, backgroundColor:'#F5F5F5' },
+ container: {width: '100%', height:3, backgroundColor:'#F5F5F5' },
 row_flex:{flexDirection: 'row'},
-bottom_container:{flex: 1, paddingVertical: 10, backgroundColor: '#FFFFFF'},
+bottom_container:{flex: 1, paddingVertical: 10, backgroundColor: '#FFFFFF',},
 bottom_sub_container:{
   alignSelf: 'center',
   justifyContent: 'center',
@@ -148,14 +183,49 @@ bottom_sub_container:{
   width: windowWidth / 4,
   marginBottom:20,
   marginTop:3,
+
 },
 bottom_icon:{
-    width: 25,
+    width: 30,
+    paddingLeft:5,
     height: 30,
     justifyContent: 'center',
     alignItems:'center',
+    alignSelf:'center',
+    textAlign:'center',
+  
 },
 bottom_text:{
   fontSize: 12,
 },
-})
+
+
+  heading: {
+    color: 'rgba(64, 64, 64, 0.5)',
+    fontSize: 16,
+    fontFamily: 'Lato-Bold',
+  },
+  sub_heading: {color: '#231F1E', fontSize: 20, fontFamily: 'Lato-Regular',fontWeight:'600' },
+  left_container: { width:windowWidth/2.2},
+  right_container: { width:windowWidth/2.2},
+  font500Size14: {
+    fontWeight: '500',
+    fontSize: 14,
+  },
+  font500Size10: {
+    fontWeight: '500',
+    fontSize: 10,
+  },
+  font400Size14: {
+    fontWeight: '400',
+    fontSize: 14,
+  },
+  font600Size14: {
+    fontWeight: '600',
+    fontSize: 14,
+  },
+  custom_height: {
+    height: 40,
+  },
+  right_custom_padding: {width: 40, height: 40, paddingTop:6},
+});
