@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function Media() {
+const  ImagesCard=()=> {
   return (
     <View>
-      <Text>Media</Text>
+      <Text>ImagesCard</Text>
     </View>
   )
 }
+export default ImagesCard;

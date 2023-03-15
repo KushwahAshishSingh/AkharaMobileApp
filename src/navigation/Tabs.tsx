@@ -15,6 +15,8 @@ import { windowWidth } from '../utils/Dimension';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Feeds from '../screens/home/Feeds';
 import MyFeeds from '../screens/home/MyFeeds';
+import MediaImages from '../screens/media/MediaImages';
+import MediaVideos from '../screens/media/MediaVideos';
 const TopTab = createMaterialTopTabNavigator();
 const Tab = createBottomTabNavigator<BottomTabNavigationParam>();
 
@@ -23,6 +25,15 @@ const TopTabNavigator = () => {
     <TopTab.Navigator>
       <TopTab.Screen name="Feeds" component={Feeds} />
       <TopTab.Screen name="My Feeds" component={MyFeeds} />
+    </TopTab.Navigator>
+  );
+};
+
+const TopTabMediaNavigator = () => {
+  return (
+    <TopTab.Navigator>
+      <TopTab.Screen name="Images" component={MediaImages} />
+      <TopTab.Screen name="Videos" component={MediaVideos} />
     </TopTab.Navigator>
   );
 };
@@ -62,12 +73,21 @@ const BottomTabs = () => {
         ),
       }}
       />
-      <Tab.Screen
+      <TopTab.Screen
         name="Media"
-        component={Media}
+        component={TopTabMediaNavigator}
         options={{
-          headerShown: false,
-          tabBarShowLabel: false,
+          headerTitle: () => (
+            <View style={{flex: 1,
+              height: "100%",
+              flexDirection: "row",
+              alignItems: "center"}}>
+              <View>
+                <Text style={styles.sub_heading}>Akhara</Text>
+              </View>
+            </View>
+          ), 
+        
         }}
       />
       <Tab.Screen
@@ -99,9 +119,9 @@ function MyTabBar({state, descriptors, navigation}) {
       case 'Home':
         return <Vector1 color={color} />;
       case 'Media':
-        return <Piechart color={color} />;
-      case 'Members':
         return <Vector2 color={color} />;
+      case 'Members':
+        return <Piechart color={color} />;
       case 'Settings':
         return <Vector3 color={color} />;
       default:
